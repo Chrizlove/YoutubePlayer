@@ -34,16 +34,18 @@ class MainActivity : AppCompatActivity() {
         //showing hint when searchview is tapped on
         searchbar.queryHint = "Search for videos"
 
+        //preload some videos
+        getVideosList("")
+
         //code for onsubmit of searchview query
         searchbar.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(keyword: String?): Boolean {
-
-                //clearing search bar text
 
                 //fetch list of videos
                 keyword?.let {
                     getVideosList(it)
                 }
+
                 //hiding keyboard when submit button is pressed
                 val keyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 keyboard.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
